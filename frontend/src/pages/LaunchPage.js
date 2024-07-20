@@ -1,7 +1,8 @@
 // src/pages/LaunchPage.js
 import React, { useState } from 'react';
-import { Box, Button, Container, Heading, Text, Flex, VStack, Image } from '@chakra-ui/react';
+import { Box, Container, Heading, Text, Flex, VStack, Image } from '@chakra-ui/react';
 import AvbSlideshow from './components/AvbSlideshow';
+import ChecklistTypeSection from './components/ChecklistTypeSection';
 import slide1 from '../assets/slide1.png';
 import slide2 from '../assets/slide2.png';
 
@@ -42,78 +43,19 @@ const LaunchPage = () => {
       <AvbSlideshow slides={slides} />
 
       {/* 2nd Section */}
-      <Container id="business-type" maxW="container.md" my={12}>
-        <Flex direction="column" align="center" justify="center" textAlign="center">
-          <Button variant="outline" m={2} onClick={() => setBusinessType('Restaurant')}>
-            Restaurant
-          </Button>
-          <Button variant="outline" m={2} onClick={() => setBusinessType('Store')}>
-            Store
-          </Button>
-          <Button variant="outline" m={2} onClick={() => setBusinessType('Service Provider')}>
-            Service Provider
-          </Button>
-
-          <Box mt={6}>
-            {businessType === 'Restaurant' && (
-              <VStack spacing={4} align="start">
-                <Text fontSize="lg">Maximize your profits by choosing our Restaurant Business Plan. Commission free ordering, responsive delivery system that works with your POS system connecting you and the Customer.</Text>
-                <VStack spacing={2} align="start">
-                  <ChecklistItem>Carryout Solution</ChecklistItem>
-                  <ChecklistItem>Delivery Solution</ChecklistItem>
-                  <ChecklistItem>Point of Sale (POS) Integrations</ChecklistItem>
-                  <ChecklistItem>Commission Free Transactions</ChecklistItem>
-                  <ChecklistItem>Customized Website</ChecklistItem>
-                  <ChecklistItem>Advertizements</ChecklistItem>
-                  <ChecklistItem>SEO</ChecklistItem>
-                  <ChecklistItem>Video & Photo editing</ChecklistItem>
-                </VStack>
-              </VStack>
-            )}
-            {businessType === 'Store' && (
-              <VStack spacing={4} align="start">
-                <Text fontSize="lg">Increase your retail reach with our Store Business Plan. Enjoy commission-free transactions, a seamless inventory system integration, and a customized website that highlights your unique products.</Text>
-                <VStack spacing={2} align="start">
-                  <ChecklistItem>Inventory Management</ChecklistItem>
-                  <ChecklistItem>Online Ordering</ChecklistItem>
-                  <ChecklistItem>POS Integration</ChecklistItem>
-                  <ChecklistItem>Commission Free Transactions</ChecklistItem>
-                  <ChecklistItem>Custom Website Design</ChecklistItem>
-                  <ChecklistItem>Marketing Tools</ChecklistItem>
-                  <ChecklistItem>SEO Optimization</ChecklistItem>
-                  <ChecklistItem>Visual Media Production</ChecklistItem>
-                </VStack>
-              </VStack>
-            )}
-            {businessType === 'Service Provider' && (
-              <VStack spacing={4} align="start">
-                <Text fontSize="lg">Optimize your service offerings with our Service Provider Business Plan. Gain access to streamlined client scheduling, customized service pages, and tools to manage bookings and inquiries.</Text>
-                <VStack spacing={2} align="start">
-                  <ChecklistItem>Client Scheduling</ChecklistItem>
-                  <ChecklistItem>Booking Management</ChecklistItem>
-                  <ChecklistItem>Custom Service Pages</ChecklistItem>
-                  <ChecklistItem>Commission Free Transactions</ChecklistItem>
-                  <ChecklistItem>Customizable Website</ChecklistItem>
-                  <ChecklistItem>Client Communication Tools</ChecklistItem>
-                  <ChecklistItem>SEO Services</ChecklistItem>
-                  <ChecklistItem>Professional Media Content</ChecklistItem>
-                </VStack>
-              </VStack>
-            )}
-          </Box>
-        </Flex>
-      </Container>
+      <div style={{marginTop:"50px"}}/>
+      <ChecklistTypeSection />
 
       {/* 3rd Section */}
       <Container id="info-section" maxW="container.md" my={12}>
-        <VStack spacing={8} align="start">
-          <Section title="About Us" description="AVB Social is a full-service, independent marketing firm specializing in digital media content building, integration and dissemination across social media and other digital outlets." />
-          <Section title="The Start" description="Our marketing content is one of a kind, and we believe your brand should be too. Our approach is customized and tailored to make your products stand out in the crowd." />
-          <Section title="The Process" description="We generate beautiful and effective media campaigns that attract active followers. We pride ourselves in creating original and visually stunning content." />
-          <Section title="The Result" description="Our original content and creative branding will enable your company to cultivate stronger relationships with your consumers while communicating your brand values." />
-          <Section title="Contact Us" description="We look forward to discussing how we can help you achieve your business goals. Get in touch with us to start the conversation." />
+        <VStack spacing={8} align="center" textAlign="center">
+            <Section title="About Us" description="JeepNe is a full-service, independent software engineering firm specializing in website design, local business integrations, and SEO advertising." />
+            <Section title="Demo" description="We offer free consultations to assess your market needs and develop a tailored strategy." />
+            <Section title="The Process" description="We create impactful business solutions that engage customers and enhance your brand's presence." />
+            <Section title="The Result" description="Our innovative content and branding strategies will attract customers and strengthen your brand identity." />
+            <Section title="Contact Us" description="Let's discuss how we can help you achieve your business goals. Contact us to start building your success today." />
         </VStack>
-      </Container>
+    </Container>
 
       {/* Portfolio Section */}
       <Container maxW="container.md" my={12}>
@@ -133,13 +75,6 @@ const LaunchPage = () => {
     </Box>
   );
 };
-
-const ChecklistItem = ({ children }) => (
-  <Flex align="center">
-    <Box as="span" size="6" mr={2} color="green.500">&#10003;</Box>
-    <Text fontSize="lg">{children}</Text>
-  </Flex>
-);
 
 const Section = ({ title, description }) => (
   <Box>
