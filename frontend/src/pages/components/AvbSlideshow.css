@@ -1,0 +1,94 @@
+/* Ensure the container for the transition group is positioned correctly */
+.transition-group {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+/* Image styles */
+.slide-image {
+    position: absolute;
+    left: 0;
+    width: 50%; /* Width of the image container */
+    height: 100%; /* Full height of the container */
+  }
+  
+  /* Content styles */
+  .slide-content {
+    position: absolute;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 20px; /* Adjust as needed */
+  }
+  
+  /* Image transitions for fade effect */
+  .image-next-enter,
+  .image-prev-enter {
+    opacity: 0;
+  }
+  
+  .image-next-enter-active,
+  .image-prev-enter-active {
+    opacity: 1;
+    transition: opacity 0.5s;
+  }
+  
+  .image-next-exit,
+  .image-prev-exit {
+    opacity: 1;
+  }
+  
+  .image-next-exit-active,
+  .image-prev-exit-active {
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  
+  /* Content transitions */
+  .next-enter {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  
+  .next-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  
+  .next-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .next-exit-active {
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  
+  .prev-enter {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  
+  .prev-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  
+  .prev-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .prev-exit-active {
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  
