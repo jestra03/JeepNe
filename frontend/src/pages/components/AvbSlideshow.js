@@ -15,7 +15,7 @@ import "./AvbSlideshow.css"; // Import the CSS file for transitions
 const AvbSlideshow = ({ slides }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [transitionDirection, setTransitionDirection] = useState("next");
-  const intervalTime = 4500; // 4.5 seconds
+  const intervalTime = 7000; // 7 seconds
   const intervalRef = useRef(null);
 
   useEffect(() => {
