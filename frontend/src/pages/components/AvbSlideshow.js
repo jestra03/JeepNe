@@ -143,6 +143,7 @@ const AvbSlideshow = ({ slides }) => {
           zIndex="1"
           onClick={handlePreviousSlide}
           marginLeft="7.5px"
+          borderRadius="20px"
         />
         <IconButton
           icon={<ChevronRightIcon />}
@@ -154,6 +155,7 @@ const AvbSlideshow = ({ slides }) => {
           zIndex="1"
           onClick={handleNextSlide}
           marginRight="7.5px"
+          borderRadius="20px"
         />
       </Box>
     </div>
