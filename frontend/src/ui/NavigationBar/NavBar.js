@@ -6,7 +6,7 @@ import logo from "./logo.png";
 import { useNavigate } from "react-router-dom";
 
 export default function NavBar() {
-  const [navSize, changeNavSize] = useState("large");
+  const [navSize, changeNavSize] = useState("small");
   const [scrolling, setScrolling] = useState(false);
   const [activeItem, setActiveItem] = useState("Home");
   const [bgColor, setBgColor] = useState("white");
