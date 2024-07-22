@@ -36,7 +36,7 @@ const AvbSlideshow = ({ slides }) => {
   };
 
   return (
-    <Box position="relative" bg="gray.200" minHeight="35vw" backgroundColor="#156030" marginTop="40px">
+    <Box position="relative" bg="gray.200" minHeight="35vw" backgroundColor="#156030">
       <Flex
         position="absolute"
         top="50%"
