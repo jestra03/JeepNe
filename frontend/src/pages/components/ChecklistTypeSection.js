@@ -7,45 +7,42 @@ const businessTypes = [
   {
     type: "Restaurant",
     description:
-      "Maximize your profits by choosing our Restaurant Business Plan. Commission-free ordering, responsive delivery system that works with your POS system connecting you and the Customer.",
+      "Maximize your profits with our Restaurant Business Plan. Start receiving online and mobile orders with ease, providing your customers the convenience to order from your restaurant anytime, anywhere.",
     checklist: [
-      "Carryout Solution",
-      "Delivery Solution",
-      "Point of Sale (POS) Integrations",
+      "Online Carryout",
+      "Online Delivery",
       "Commission Free Transactions",
-      "Customized Website",
+      "POS (Point-of-Sale) Integrations",
       "Advertisements",
-      "SEO",
+      "Customizable Website",
       "Video & Photo editing",
     ],
   },
   {
     type: "Store",
     description:
-      "Increase your retail reach with our Store Business Plan. Enjoy commission-free transactions, a seamless inventory system integration, and a customized website that highlights your unique products.",
+      "Boost your profits with our Store Business Plan. Expand your retail reach with commission-free transactions, seamless inventory system integration, and a customized website that highlights your unique products.",
     checklist: [
-      "Inventory Management",
       "Online Ordering",
-      "POS Integration",
       "Commission Free Transactions",
-      "Custom Website Design",
-      "Marketing Tools",
-      "SEO Optimization",
+      "Inventory Management",
+      "POS Integration",
+      "Advertisements",
+      "Customizable Website",
       "Visual Media Production",
     ],
   },
   {
     type: "Service Provider",
     description:
-      "Optimize your service offerings with our Service Provider Business Plan. Gain access to streamlined client scheduling, customized service pages, and tools to manage bookings and inquiries.",
+      "Elevate your earnings with our Service Provider Business Plan. Enhance your service efficiency with streamlined client scheduling, tailored service pages, and robust tools to manage bookings and inquiries.",
     checklist: [
       "Client Scheduling",
       "Booking Management",
       "Custom Service Pages",
       "Commission Free Transactions",
-      "Customizable Website",
       "Client Communication Tools",
-      "SEO Services",
+      "Customizable Website",
       "Professional Media Content",
     ],
   },
@@ -123,7 +120,19 @@ const ChecklistTypeSection = () => {
       </Flex>
 
       {/* Content Container */}
-      <Box width="80%" maxW="800px" height="400px">
+      <Box
+        width="80%"
+        maxW="800px"
+        height="auto"
+        minH="390px"
+        border="1px"
+        borderColor="gray.300"
+        borderRadius="md"
+        p={4}
+        boxShadow="md"
+        bg="white"
+        marginBottom="20px"
+      >
         <AnimatePresence>
           {showContent && selectedType && (
             <motion.div

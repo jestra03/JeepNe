@@ -54,6 +54,7 @@ const AvbSlideshow = ({ slides }) => {
       <Box
         position="relative"
         bg="gray.200"
+        className="slide-container"
         minHeight="40vw"
         backgroundColor="#156030"
       >
@@ -72,7 +73,7 @@ const AvbSlideshow = ({ slides }) => {
           textAlign="left"
           overflow="hidden"
         >
-          <TransitionGroup className="transition-group">
+          <TransitionGroup className="transition-group transition-group-1">
             <CSSTransition
               key={`image-${currentSlide}-${transitionDirection}`}
               timeout={500}
@@ -119,12 +120,17 @@ const AvbSlideshow = ({ slides }) => {
                   >
                     {slides[currentSlide].bigHeader}
                   </Heading>
-                  <Text color="#c7c7c6" fontSize="1.05vw">
+                  <Text
+                    className="slideshow-desc"
+                    color="#c7c7c6"
+                    fontSize="1.05vw"
+                  >
                     {slides[currentSlide].description}
                   </Text>
                   <Button
                     colorScheme="teal"
                     onClick={slides[currentSlide].buttonAction}
+                    className="slide-button"
                   >
                     {slides[currentSlide].buttonText}
                   </Button>
