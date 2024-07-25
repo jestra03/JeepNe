@@ -1,7 +1,9 @@
 // src/pages/ChecklistTypeSection.js
-import React, { useState, useEffect, useCallback } from "react";
-import { Box, Button, Flex, VStack, Text } from "@chakra-ui/react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState } from "react";
+import { Box, Button, Flex, VStack, Text, Fade } from "@chakra-ui/react";
+import { motion } from "framer-motion";
+import "../../themeSettings.js";
+import { accentColor, primaryColor } from "../../themeSettings.js";
 
 const businessTypes = [
   {
@@ -58,61 +60,43 @@ const ChecklistItem = ({ children }) => (
 );
 
 const ChecklistTypeSection = () => {
-  const [businessType, setBusinessType] = useState("Restaurant");
-  const [showContent, setShowContent] = useState(true);
-  const [fadeContent, setFadeContent] = useState(true);
-  const [transitioning, setTransitioning] = useState(false); // New state to manage transitions
+  const [businessType, setBusinessType] = useState("None");
 
   const selectedType = businessTypes.find((bt) => bt.type === businessType);
 
-  const handleBusinessTypeChange = useCallback(
-    (type) => {
-      if (businessType === type) {
-        return;
-      }
-      if (!transitioning) {
-        setTransitioning(true);
-        setFadeContent(false);
-
-        // After fade-out completes, update businessType and start fade-in
-        const timer = setTimeout(() => {
-          setBusinessType(type);
-          setFadeContent(true);
-          const transitionEndTimer = setTimeout(() => {
-            setTransitioning(false);
-          }, 500); // Match the duration of your fade-in animation
-
-          return () => clearTimeout(transitionEndTimer); // Clean up timer on unmount
-        }, 400); // Match the duration of your fade-out animation
-
-        return () => clearTimeout(timer); // Clean up timer on unmount
-      }
-    },
-    [transitioning]
-  );
-
-  useEffect(() => {
-    // Set showContent to false to start fade-out animation
-    setShowContent(false);
-
-    // After fade-out animation completes, hide content
-    const timer = setTimeout(() => {
-      setShowContent(true);
-    }, 400); // Match the duration of your fade-out animation
-
-    return () => clearTimeout(timer); // Clean up timer on unmount
-  }, [fadeContent]);
-
   return (
-    <Flex direction="column" align="center" justify="center" textAlign="center">
+    <Flex
+      direction="column"
+      align="center"
+      justify="top"
+      textAlign="center"
+      minH="300px"
+    >
+      <h1 style={{ fontSize: "50px" }}>What Kind Of Business Are You?</h1>
       {/* Buttons Container */}
-      <Flex direction="row" wrap="wrap" justify="center" mb={6}>
+      <Flex direction="row" wrap="wrap" justify="center">
         {businessTypes.map((bt) => (
           <Button
             key={bt.type}
-            variant="outline"
-            m={2}
-            onClick={() => handleBusinessTypeChange(bt.type)}
+            m={3}
+            marginBottom={0}
+            borderBottomRadius={0}
+            cursor="pointer"
+            backgroundColor={
+              businessType === bt.type ? primaryColor : accentColor
+            }
+            color={businessType === bt.type ? accentColor : primaryColor}
+            onClick={() => setBusinessType(bt.type)}
+            sx={{
+              "&:hover": {
+                backgroundColor: primaryColor,
+                color: accentColor,
+                pointerEvents: "",
+              },
+            }}
+            as={motion.div}
+            whileTap={{ translateX: "10px" }}
+            transition="0.5s linear"
           >
             {bt.type}
           </Button>
@@ -120,29 +104,27 @@ const ChecklistTypeSection = () => {
       </Flex>
 
       {/* Content Container */}
-      <Box
-        width="80%"
-        maxW="800px"
-        height="auto"
-        minH="390px"
-        border="1px"
-        borderColor="gray.300"
-        borderRadius="md"
-        p={4}
-        boxShadow="md"
-        bg="white"
-        marginBottom="20px"
-      >
-        <AnimatePresence>
-          {showContent && selectedType && (
-            <motion.div
-              key={selectedType.type} // Key to trigger animation
-              initial={{ opacity: fadeContent ? 0 : 1 }}
-              animate={{ opacity: fadeContent ? 1 : 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }} // Adjust the duration as needed
+      {selectedType && (
+        <Fade
+          align="center"
+          in={selectedType}
+          transition={{ enter: { duration: 0.5 } }}
+        >
+          <Box
+            width="80%"
+            maxW="800px"
+            height="auto"
+            borderRadius="md"
+            p={4}
+            bg={primaryColor}
+            marginBottom="20px"
+          >
+            <Fade
+              key={businessType}
+              in={selectedType}
+              transition={{ enter: { duration: 1 } }}
             >
-              <VStack spacing={4} align="start">
+              <VStack spacing={4} align="start" color={accentColor}>
                 <Text fontSize="lg">{selectedType.description}</Text>
                 <VStack spacing={2} align="start">
                   {selectedType.checklist.map((item, index) => (
@@ -150,10 +132,10 @@ const ChecklistTypeSection = () => {
                   ))}
                 </VStack>
               </VStack>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </Box>
+            </Fade>
+          </Box>
+        </Fade>
+      )}
     </Flex>
   );
 };
