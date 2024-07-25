@@ -1,9 +1,8 @@
 // src/pages/ChecklistTypeSection.js
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Box, Button, Flex, VStack, Text, Fade } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import "../../themeSettings.js";
-import { accentColor, primaryColor } from "../../themeSettings.js";
+import { accentOne, primaryColor } from "../../themeSettings.js"; //Importing theme colors
 
 const businessTypes = [
   {
@@ -51,11 +50,13 @@ const businessTypes = [
 ];
 
 const ChecklistItem = ({ children }) => (
-  <Flex align="center">
+  <Flex>
     <Box as="span" size="6" mr={2} color="green.500">
       &#10003;
     </Box>
-    <Text fontSize="lg">{children}</Text>
+    <Text textAlign="left" fontSize="lg">
+      {children}
+    </Text>
   </Flex>
 );
 
@@ -64,33 +65,49 @@ const ChecklistTypeSection = () => {
 
   const selectedType = businessTypes.find((bt) => bt.type === businessType);
 
+  const elementRef = useRef(null); //Used to scroll to checklist when opened
+
+  useEffect(() => {
+    //Used to scroll to checklist when opened
+    if (elementRef.current && businessType !== "None") {
+      elementRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [businessType]);
+
   return (
     <Flex
+      ref={elementRef}
       direction="column"
       align="center"
       justify="top"
       textAlign="center"
       minH="300px"
     >
-      <h1 style={{ fontSize: "50px" }}>What Kind Of Business Are You?</h1>
+      <h1 style={{ fontSize: "4vw", fontWeight: "bold" }}>
+        What Kind Of Business Are You?
+      </h1>
       {/* Buttons Container */}
-      <Flex direction="row" wrap="wrap" justify="center">
+      <Flex direction="row" justify="center">
         {businessTypes.map((bt) => (
           <Button
             key={bt.type}
             m={3}
-            marginBottom={0}
-            borderBottomRadius={0}
+            marginBottom={{ base: 2, sm: 0 }}
+            fontSize={{ base: "0.7rem", sm: "0.9rem" }}
+            borderBottomRadius={{ base: "", sm: 0 }}
             cursor="pointer"
             backgroundColor={
-              businessType === bt.type ? primaryColor : accentColor
+              businessType === bt.type ? primaryColor : accentOne
             }
-            color={businessType === bt.type ? accentColor : primaryColor}
+            color={businessType === bt.type ? accentOne : primaryColor}
             onClick={() => setBusinessType(bt.type)}
             sx={{
               "&:hover": {
                 backgroundColor: primaryColor,
-                color: accentColor,
+                color: accentOne,
                 pointerEvents: "",
               },
             }}
@@ -124,9 +141,9 @@ const ChecklistTypeSection = () => {
               in={selectedType}
               transition={{ enter: { duration: 1 } }}
             >
-              <VStack spacing={4} align="start" color={accentColor}>
+              <VStack spacing={4} align="start" color={accentOne}>
                 <Text fontSize="lg">{selectedType.description}</Text>
-                <VStack spacing={2} align="start">
+                <VStack spacing={2} align="left">
                   {selectedType.checklist.map((item, index) => (
                     <ChecklistItem key={index}>{item}</ChecklistItem>
                   ))}

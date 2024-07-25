@@ -21,7 +21,7 @@ export default function NavItem({
         <Icon as={icon} fontSize="20px" color={textColor} />
         <Text
           mt={2}
-          display={navSize === "small" ? "none" : "block"}
+          display={navSize === "small" ? "none" : ""}
           color={textColor}
         >
           {title}

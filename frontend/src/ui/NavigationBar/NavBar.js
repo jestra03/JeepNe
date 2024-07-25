@@ -4,6 +4,7 @@ import { FiMenu, FiHome, FiUser, FiDollarSign, FiPhone } from "react-icons/fi";
 import NavItem from "./NavItem";
 import logo from "./logo.png";
 import { useNavigate } from "react-router-dom";
+import { primaryColor, accentOne } from "../../themeSettings.js";
 
 export default function NavBar() {
   const [navSize, changeNavSize] = useState("small");
@@ -24,11 +25,11 @@ export default function NavBar() {
       if (scrollPosition > 700) {
         // scrollPosTransition
         // can add a useState for scrollPosTransition later on for diff pages, 700 is hardcoded for the launch page
-        setBgColor("#156030"); // Background color when scrolled below 700
-        setTextColor("white"); // Text color when scrolled below 700
+        setBgColor(primaryColor); // Background color when scrolled below 700
+        setTextColor(accentOne); // Text color when scrolled below 700
         setLogoBrightness("1000%"); // Set brightness to 1000% to make it white
       } else {
-        setBgColor("white"); // Default background color
+        setBgColor(accentOne); // Default background color
         setTextColor("black"); // Default text color
         setLogoBrightness("100%"); // Default brightness for the logo
       }
@@ -43,6 +44,11 @@ export default function NavBar() {
   const handleNavItemClick = (title, path) => {
     setActiveItem(title);
     navigate(path); // Use navigate to change the route
+    window.scrollTo({
+      // Scroll to top of screen
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -51,7 +57,7 @@ export default function NavBar() {
       top="0"
       left="50%"
       transform="translateX(-50%)"
-      w="100%"
+      w="95%"
       maxW="1000px"
       h={navSize === "small" ? "55px" : "85px"}
       zIndex="overlay"
@@ -61,9 +67,11 @@ export default function NavBar() {
       flexDir="row"
       justifyContent="space-around"
       alignItems="center"
-      transition="box-shadow 0.3s ease-in-out, height 0.3s ease-in-out, background-color 0.3s ease-in-out" // Transition for background color
+      transition="box-shadow 0.3s ease-in-out, height 0.5s ease-in-out, background-color 0.3s ease-in-out" // Transition for background color
       marginTop="15px"
-      p="0 10px"
+      p="0 5px"
+      fontSize={{ base: "0.7rem", sm: "1rem" }}
+      overflow="hidden"
     >
       <IconButton
         background="none"
@@ -93,10 +101,14 @@ export default function NavBar() {
       <Image
         src={logo}
         alt="Logo"
-        boxSize={navSize === "small" ? "160px" : "190px"}
+        width={{ base: "100px" }}
+        height="auto"
+        cursor="pointer"
         objectFit="contain"
+        display={navSize === "large" ? "none" : ""}
         filter={`brightness(${logoBrightness})`} // Apply brightness filter to the logo
         transition="filter 0.3s ease-in-out" // Smooth transition for brightness
+        onClick={() => handleNavItemClick("Home", "/home")} // Add path
       />
       <NavItem
         navSize={navSize}

@@ -11,6 +11,7 @@ import {
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "./AvbSlideshow.css"; // Import the CSS file for transitions
+import { primaryColor, accentOne, accentTwo } from "../../themeSettings.js";
 
 const AvbSlideshow = ({ slides }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -49,14 +50,14 @@ const AvbSlideshow = ({ slides }) => {
         position="relative"
         bg="gray.200"
         height="30px"
-        backgroundColor="#156030"
+        backgroundColor={primaryColor}
       />
       <Box
         position="relative"
         bg="gray.200"
         className="slide-container"
         minHeight="40vw"
-        backgroundColor="#156030"
+        backgroundColor={primaryColor}
       >
         <Flex
           position="absolute"
@@ -81,7 +82,7 @@ const AvbSlideshow = ({ slides }) => {
               unmountOnExit
             >
               <Box
-                bg="white"
+                bg={accentOne}
                 className="slide-image"
                 style={{
                   backgroundImage: `url(${slides[currentSlide].image})`,
@@ -106,9 +107,9 @@ const AvbSlideshow = ({ slides }) => {
                 justify="center"
                 className="slide-content"
               >
-                <VStack spacing={4} align="start" color="white" w="100%">
+                <VStack spacing={4} align="start" color={accentOne} w="100%">
                   <Heading
-                    color="#B5A263"
+                    color={accentTwo}
                     fontSize="1.3vw"
                     style={{ fontFamily: "Manrope, sans-serif" }}
                   >
@@ -122,13 +123,14 @@ const AvbSlideshow = ({ slides }) => {
                   </Heading>
                   <Text
                     className="slideshow-desc"
-                    color="#c7c7c6"
+                    color={accentOne}
+                    opacity={0.8}
                     fontSize="1.05vw"
                   >
                     {slides[currentSlide].description}
                   </Text>
                   <Button
-                    colorScheme="teal"
+                    bg={accentTwo}
                     onClick={slides[currentSlide].buttonAction}
                     className="slide-button"
                   >
