@@ -12,14 +12,24 @@ const slides = [
   {
     id: 1,
     smallHeader: "Ready to redefine your online presence?",
-    bigHeader: "Build your business with Jeepney",
+    bigHeader: "Build your business with JeepNe",
     description:
       "We offer a local business alternative with no commission fees, tools to boost customer engagement, and fully customized solutions that capture your unique character.",
     buttonText: "Build Your Business",
-    buttonAction: () =>
-      document
-        .getElementById("checklist-type-section")
-        .scrollIntoView({ behavior: "smooth" }),
+    buttonAction: () => {
+      const element = document.getElementById("checklist-type-section");
+      const offset = 70;
+      if (element) {
+        const elementTop =
+          element.getBoundingClientRect().top + window.pageYOffset;
+        const scrollToPosition = elementTop - offset;
+
+        window.scrollTo({
+          top: scrollToPosition,
+          behavior: "smooth",
+        });
+      }
+    },
     image: slide1,
   },
   {
@@ -29,10 +39,20 @@ const slides = [
     description:
       "Our services help connects you and the customer, capturing a broad spectrum of consumers that actively use digital media.",
     buttonText: "Learn More",
-    buttonAction: () =>
-      document
-        .getElementById("info-section")
-        .scrollIntoView({ behavior: "smooth" }),
+    buttonAction: () => {
+      const element = document.getElementById("info-section");
+      const offset = 70;
+      if (element) {
+        const elementTop =
+          element.getBoundingClientRect().top + window.pageYOffset;
+        const scrollToPosition = elementTop - offset;
+
+        window.scrollTo({
+          top: scrollToPosition,
+          behavior: "smooth",
+        });
+      }
+    },
     image: slide2,
   },
 ];
@@ -46,7 +66,7 @@ const portfolioImages = [
 
 const LaunchPage = () => {
   return (
-    <Box fontFamily="'Manrope', sans-serif">
+    <Box width="100vw" fontFamily="'Manrope', sans-serif">
       {/* 1st Section */}
       <AvbSlideshow slides={slides} />
       {/* 2nd Section */}

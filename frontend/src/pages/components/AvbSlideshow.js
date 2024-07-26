@@ -110,7 +110,7 @@ const AvbSlideshow = ({ slides }) => {
                 <VStack spacing={4} align="start" color={accentOne} w="100%">
                   <Heading
                     color={accentTwo}
-                    fontSize="1.3vw"
+                    display={{ base: "none", sm: "" }}
                     style={{ fontFamily: "Manrope, sans-serif" }}
                   >
                     {slides[currentSlide].smallHeader}
@@ -132,7 +132,8 @@ const AvbSlideshow = ({ slides }) => {
                   <Button
                     bg={accentTwo}
                     onClick={slides[currentSlide].buttonAction}
-                    className="slide-button"
+                    fontSize={{ base: "0.5rem", md: "1.2rem" }}
+                    width="auto"
                   >
                     {slides[currentSlide].buttonText}
                   </Button>

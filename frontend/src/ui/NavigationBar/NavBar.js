@@ -3,6 +3,7 @@ import { Flex, IconButton, Avatar, Image } from "@chakra-ui/react";
 import { FiMenu, FiHome, FiUser, FiDollarSign, FiPhone } from "react-icons/fi";
 import NavItem from "./NavItem";
 import logo from "./logo.png";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { primaryColor, accentOne } from "../../themeSettings.js";
 
@@ -26,7 +27,7 @@ export default function NavBar() {
         // scrollPosTransition
         // can add a useState for scrollPosTransition later on for diff pages, 700 is hardcoded for the launch page
         setBgColor(primaryColor); // Background color when scrolled below 700
-        setTextColor(accentOne); // Text color when scrolled below 700
+        setTextColor("black"); // Text color when scrolled below 700
         setLogoBrightness("1000%"); // Set brightness to 1000% to make it white
       } else {
         setBgColor(accentOne); // Default background color
@@ -67,7 +68,8 @@ export default function NavBar() {
       flexDir="row"
       justifyContent="space-around"
       alignItems="center"
-      transition="box-shadow 0.3s ease-in-out, height 0.5s ease-in-out, background-color 0.3s ease-in-out" // Transition for background color
+      as={motion.div}
+      transition="0.3s linear"
       marginTop="15px"
       p="0 5px"
       fontSize={{ base: "0.7rem", sm: "1rem" }}
@@ -105,6 +107,7 @@ export default function NavBar() {
         height="auto"
         cursor="pointer"
         objectFit="contain"
+        userSelect="none"
         display={navSize === "large" ? "none" : ""}
         filter={`brightness(${logoBrightness})`} // Apply brightness filter to the logo
         transition="filter 0.3s ease-in-out" // Smooth transition for brightness

@@ -1,5 +1,6 @@
 import React from "react";
 import { Flex, Text, Icon, Link } from "@chakra-ui/react";
+import { accentTwo } from "../../themeSettings";
 
 export default function NavItem({
   icon,
@@ -11,10 +12,10 @@ export default function NavItem({
 }) {
   return (
     <Link
-      backgroundColor={active && "#AEC8CA"}
+      backgroundColor={active && accentTwo}
       p={3}
       borderRadius={8}
-      _hover={{ textDecor: "none", backgroundColor: "#AEC8CA" }}
+      _hover={{ textDecor: "none", backgroundColor: accentTwo }}
       onClick={onClick}
     >
       <Flex flexDir="column" alignItems="center">

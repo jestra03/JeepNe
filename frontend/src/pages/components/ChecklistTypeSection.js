@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Box, Button, Flex, VStack, Text, Fade } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { accentOne, primaryColor } from "../../themeSettings.js"; //Importing theme colors
+import { accentOne, accentTwo, primaryColor } from "../../themeSettings.js"; //Importing theme colors
 
 const businessTypes = [
   {
@@ -51,7 +51,7 @@ const businessTypes = [
 
 const ChecklistItem = ({ children }) => (
   <Flex>
-    <Box as="span" size="6" mr={2} color="green.500">
+    <Box as="span" size="6" mr={2} color={accentTwo}>
       &#10003;
     </Box>
     <Text textAlign="left" fontSize="lg">
@@ -69,10 +69,15 @@ const ChecklistTypeSection = () => {
 
   useEffect(() => {
     //Used to scroll to checklist when opened
+    const offset = 70; //To account for the navbar
     if (elementRef.current && businessType !== "None") {
-      elementRef.current.scrollIntoView({
+      const elementTop =
+        elementRef.current.getBoundingClientRect().top + window.pageYOffset;
+      const scrollToPosition = elementTop - offset;
+
+      window.scrollTo({
+        top: scrollToPosition,
         behavior: "smooth",
-        block: "start",
       });
     }
   }, [businessType]);
@@ -95,9 +100,9 @@ const ChecklistTypeSection = () => {
           <Button
             key={bt.type}
             m={3}
-            marginBottom={{ base: 2, sm: 0 }}
-            fontSize={{ base: "0.7rem", sm: "0.9rem" }}
-            borderBottomRadius={{ base: "", sm: 0 }}
+            marginBottom={{ base: 2, md: 0 }}
+            fontSize={{ base: "0.9rem", sm: "1.3rem" }}
+            borderBottomRadius={{ base: "", md: 0 }}
             cursor="pointer"
             backgroundColor={
               businessType === bt.type ? primaryColor : accentOne
@@ -112,14 +117,19 @@ const ChecklistTypeSection = () => {
               },
             }}
             as={motion.div}
-            whileTap={{ translateX: "10px" }}
             transition="0.5s linear"
           >
             {bt.type}
           </Button>
         ))}
       </Flex>
-
+      {!selectedType && (
+        <Box marginTop={10}>
+          <Text opacity={0.5} color={primaryColor}>
+            Select a business type above
+          </Text>
+        </Box>
+      )}
       {/* Content Container */}
       {selectedType && (
         <Fade
@@ -142,7 +152,9 @@ const ChecklistTypeSection = () => {
               transition={{ enter: { duration: 1 } }}
             >
               <VStack spacing={4} align="start" color={accentOne}>
-                <Text fontSize="lg">{selectedType.description}</Text>
+                <Text color={accentOne} fontSize="lg">
+                  {selectedType.description}
+                </Text>
                 <VStack spacing={2} align="left">
                   {selectedType.checklist.map((item, index) => (
                     <ChecklistItem key={index}>{item}</ChecklistItem>
