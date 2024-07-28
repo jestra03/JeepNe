@@ -98,6 +98,7 @@ const ChecklistTypeSection = () => {
         What Kind Of Business Are You?
       </h1>
       {/* Buttons Container */}
+      {!selectedType && <h3>Select One</h3>}
       <Flex direction="row" justify="center">
         {businessTypes.map((bt) => (
           <Button
@@ -126,13 +127,7 @@ const ChecklistTypeSection = () => {
           </Button>
         ))}
       </Flex>
-      {!selectedType && (
-        <Box marginTop={10}>
-          <Text opacity={0.5} color={primaryColor}>
-            Select a Business Type Above
-          </Text>
-        </Box>
-      )}
+
       {/* Content Container */}
       {selectedType && (
         <Fade
@@ -164,7 +159,7 @@ const ChecklistTypeSection = () => {
                   ))}
                   <Button
                     onClick={() => {
-                      navigate("/pricing-plans");
+                      navigate(`/pricing-plans/${selectedType.type}`);
                     }}
                   >
                     <Text>Explore Pricing {"->"}</Text>

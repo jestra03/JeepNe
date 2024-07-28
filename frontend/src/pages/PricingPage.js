@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Box, Button, VStack, Text } from "@chakra-ui/react";
-import ComparisonSection from "./components/ComparisonTable";
+import ComparisonSection from "./components/ComparisonSection";
 import { primaryColor, accentOne, accentTwo } from "../themeSettings";
 import { motion } from "framer-motion";
 
 const PricingPage = () => {
-  const [businessType, setBusinessType] = useState(null);
+  const { type } = useParams();
+  const [businessType, setBusinessType] = useState(type);
   const businessTypes = ["Restaurant", "Store", "Service Provider"];
+  console.log(businessType);
   const features = {
     restaurantFeatures: [
       "Carryout Solution",
@@ -118,7 +121,7 @@ const PricingPage = () => {
         return features[Object.keys(features)[i]];
       }
     }
-    return {};
+    return null;
   }
   function determinePlans() {
     for (let i = 0; i < businessTypes.length; i++) {
@@ -126,7 +129,7 @@ const PricingPage = () => {
         return plans[Object.keys(plans)[i]];
       }
     }
-    return {};
+    return null;
   }
 
   return (
@@ -169,7 +172,7 @@ const PricingPage = () => {
               data={determinePlans()}
             />
           )}
-          {!businessType && (
+          {businessType === "selectPlan" && (
             <Box marginTop={10}>
               <Text opacity={0.5} color={primaryColor}>
                 Select a Business Type Above

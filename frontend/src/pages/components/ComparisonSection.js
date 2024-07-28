@@ -41,7 +41,7 @@ function ComparisonSection({ features, data }) {
             <Tr>
               <Td bg={accentTwo}>{feature}</Td>
               <Td></Td>
-              {Object.entries(data).map(([key, dataObject]) => (
+              {Object.entries(data).map(([_, dataObject]) => (
                 <Th>
                   <Text
                     align="center"

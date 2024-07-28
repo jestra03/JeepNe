@@ -135,7 +135,9 @@ export default function NavBar() {
         icon={FiDollarSign}
         title="Pricing"
         active={activeItem === "Pricing"}
-        onClick={() => handleNavItemClick("Pricing", "/pricing-plans")} // Add path
+        onClick={() =>
+          handleNavItemClick("Pricing", "/pricing-plans/selectPlan")
+        } // Add path
         textColor={textColor} // Pass textColor to NavItem
       />
       <NavItem
