@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Flex, IconButton, Avatar, Image } from "@chakra-ui/react";
 import { FiMenu, FiHome, FiUser, FiDollarSign, FiPhone } from "react-icons/fi";
 import NavItem from "./NavItem";
@@ -25,11 +25,19 @@ export default function NavBar() {
   const navigate = useNavigate(); // Hook for navigation
   const location = useLocation();
 
+  function getMatchingPrefix(value, prefixes) {
+    // Checks if a string value starts with any prefix in prefixes
+    return prefixes.find((prefix) => value.startsWith(prefix));
+  }
+
   useEffect(() => {
-    //Sets the active item based on current page
+    // Sets the active item based on current page
     const keys = Object.keys(pages);
     const values = Object.values(pages);
-    const index = values.indexOf(location.pathname);
+    const index = values.indexOf(
+      // Used to get which part of the navbar should be highlighted based on link/location
+      getMatchingPrefix(location.pathname, Object.values(pages))
+    );
     if (index !== -1) {
       setActiveItem(keys[index]);
     }

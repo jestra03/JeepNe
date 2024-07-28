@@ -98,7 +98,6 @@ const ChecklistTypeSection = () => {
         What Kind Of Business Are You?
       </h1>
       {/* Buttons Container */}
-      {!selectedType && <h3>Select One</h3>}
       <Flex direction="row" justify="center">
         {businessTypes.map((bt) => (
           <Button

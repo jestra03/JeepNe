@@ -9,7 +9,6 @@ const PricingPage = () => {
   const { type } = useParams();
   const [businessType, setBusinessType] = useState(type);
   const businessTypes = ["Restaurant", "Store", "Service Provider"];
-  console.log(businessType);
   const features = {
     restaurantFeatures: [
       "Carryout Solution",
@@ -115,6 +114,12 @@ const PricingPage = () => {
     },
   };
 
+  const prices = {
+    Basic: "$25",
+    Pro: "$99",
+    Elite: "$199",
+  };
+
   function determineFeatures() {
     for (let i = 0; i < businessTypes.length; i++) {
       if (businessType === businessTypes[i]) {
@@ -170,6 +175,7 @@ const PricingPage = () => {
             <ComparisonSection
               features={determineFeatures()}
               data={determinePlans()}
+              prices={prices}
             />
           )}
           {businessType === "selectPlan" && (

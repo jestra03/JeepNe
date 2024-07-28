@@ -12,28 +12,51 @@ import {
   Td,
 } from "@chakra-ui/react";
 import { accentOne, accentTwo, primaryColor } from "../../themeSettings";
+import { motion } from "framer-motion";
 
 /* features: An array of the features to be compared.
    data: An array which contains the objects whos features will be compared.
    The objects in the data array will have an array with true or false for each of the features.
 */
-function ComparisonSection({ features, data }) {
+function ComparisonSection({ features, data, prices }) {
   if (features === null || data === null) {
     return;
   }
 
   return (
-    <Box>
-      <Table>
+    <Box
+      as={motion.div}
+      initial={{ opacity: 0, y: "50%" }}
+      animate={{ opacity: 1, y: "0%", transition: { duration: 1 } }}
+      exit={{ opacity: 0, y: "50%" }}
+    >
+      <Table
+        variant="unstyled"
+        key={features}
+        as={motion.div}
+        initial={{ opacity: 0.4 }}
+        animate={{ opacity: 1, transition: { duration: 0.3 } }}
+        exit={{ opacity: 0 }}
+      >
         <Thead>
+          <Tr>
+            <Th></Th>
+            <Th></Th>
+            {Object.keys(data).map((key) => (
+              <Th textAlign="center">
+                <Text m={1} fontSize="1.4rem">
+                  {key}
+                </Text>
+                <Text fontWeight="400" fontSize="1rem">
+                  {prices[key]}
+                </Text>
+              </Th>
+            ))}
+          </Tr>
           <Tr>
             <Th bg={accentTwo} fontWeight="100">
               Features
             </Th>
-            <Th></Th>
-            {Object.keys(data).map((key) => (
-              <Th>{key}</Th>
-            ))}
           </Tr>
         </Thead>
         <Tbody>
