@@ -18,12 +18,18 @@ import { accentOne, accentTwo, primaryColor } from "../../themeSettings";
    The objects in the data array will have an array with true or false for each of the features.
 */
 function ComparisonSection({ features, data }) {
+  if (features === null || data === null) {
+    return;
+  }
+
   return (
     <Box>
       <Table>
         <Thead>
           <Tr>
-            <Th fontWeight="100">Features</Th>
+            <Th bg={accentTwo} fontWeight="100">
+              Features
+            </Th>
             <Th></Th>
             {Object.keys(data).map((key) => (
               <Th>{key}</Th>
@@ -33,7 +39,7 @@ function ComparisonSection({ features, data }) {
         <Tbody>
           {features.map((feature, index) => (
             <Tr>
-              <Td>{feature}</Td>
+              <Td bg={accentTwo}>{feature}</Td>
               <Td></Td>
               {Object.entries(data).map(([key, dataObject]) => (
                 <Th>

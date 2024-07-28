@@ -129,7 +129,7 @@ const ChecklistTypeSection = () => {
       {!selectedType && (
         <Box marginTop={10}>
           <Text opacity={0.5} color={primaryColor}>
-            Select a business type above
+            Select a Business Type Above
           </Text>
         </Box>
       )}
