@@ -1,22 +1,20 @@
 // src/App.js
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { ChakraProvider } from '@chakra-ui/react';
-import LaunchPage from './pages/LaunchPage';
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import { ChakraProvider } from "@chakra-ui/react";
+import LaunchPage from "./pages/LaunchPage";
+import PricingPage from "./pages/PricingPage";
 import NavBar from "./ui/NavigationBar/NavBar.js";
-import './App.css';
+import "./App.css";
+import AnimatedRoutes from "./pages/components/AnimatedRoutes.js";
 
 function App() {
   return (
     <ChakraProvider>
       <Router>
         <div className="App">
-          <NavBar/>
-          <Routes>
-            {/* Pages */}
-            <Route path="/home" element={<LaunchPage />} />
-            <Route path="/" element={<LaunchPage />} />
-          </Routes>
+          <NavBar />
+          <AnimatedRoutes />
         </div>
       </Router>
     </ChakraProvider>

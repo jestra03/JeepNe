@@ -7,6 +7,7 @@ import InfoSection from "./components/InfoSection";
 import PortfolioSection from "./components/PortfolioSection"; // Import the new component
 import slide1 from "../assets/slide1.png";
 import slide2 from "../assets/slide2.png";
+import { motion } from "framer-motion";
 
 const slides = [
   {
@@ -66,7 +67,13 @@ const portfolioImages = [
 
 const LaunchPage = () => {
   return (
-    <Box width="100vw" fontFamily="'Manrope', sans-serif">
+    <Box
+      as={motion.div}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { duration: 1 } }}
+      exit={{ opacity: 0 }}
+      fontFamily="'Manrope', sans-serif"
+    >
       {/* 1st Section */}
       <AvbSlideshow slides={slides} />
       {/* 2nd Section */}

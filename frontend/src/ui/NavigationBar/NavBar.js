@@ -4,8 +4,15 @@ import { FiMenu, FiHome, FiUser, FiDollarSign, FiPhone } from "react-icons/fi";
 import NavItem from "./NavItem";
 import logo from "./logo.png";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { primaryColor, accentOne } from "../../themeSettings.js";
+
+const pages = {
+  Home: "/home",
+  About: "/about",
+  Pricing: "/pricing-plans",
+  Support: "/contact",
+};
 
 export default function NavBar() {
   const [navSize, changeNavSize] = useState("small");
@@ -16,6 +23,17 @@ export default function NavBar() {
   const [logoBrightness, setLogoBrightness] = useState("100%");
 
   const navigate = useNavigate(); // Hook for navigation
+  const location = useLocation();
+
+  useEffect(() => {
+    //Sets the active item based on current page
+    const keys = Object.keys(pages);
+    const values = Object.values(pages);
+    const index = values.indexOf(location.pathname);
+    if (index !== -1) {
+      setActiveItem(keys[index]);
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,7 +61,6 @@ export default function NavBar() {
   }, []);
 
   const handleNavItemClick = (title, path) => {
-    setActiveItem(title);
     navigate(path); // Use navigate to change the route
     window.scrollTo({
       // Scroll to top of screen

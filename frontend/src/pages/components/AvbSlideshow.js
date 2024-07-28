@@ -12,6 +12,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "./AvbSlideshow.css"; // Import the CSS file for transitions
 import { primaryColor, accentOne, accentTwo } from "../../themeSettings.js";
+import { motion } from "framer-motion";
 
 const AvbSlideshow = ({ slides }) => {
   const [currentSlide, setCurrentSlide] = useState(0);

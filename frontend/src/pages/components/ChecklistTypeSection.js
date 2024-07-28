@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Box, Button, Flex, VStack, Text, Fade } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { accentOne, accentTwo, primaryColor } from "../../themeSettings.js"; //Importing theme colors
+import { useNavigate } from "react-router-dom";
 
 const businessTypes = [
   {
@@ -66,6 +67,8 @@ const ChecklistTypeSection = () => {
   const selectedType = businessTypes.find((bt) => bt.type === businessType);
 
   const elementRef = useRef(null); //Used to scroll to checklist when opened
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     //Used to scroll to checklist when opened
@@ -159,6 +162,13 @@ const ChecklistTypeSection = () => {
                   {selectedType.checklist.map((item, index) => (
                     <ChecklistItem key={index}>{item}</ChecklistItem>
                   ))}
+                  <Button
+                    onClick={() => {
+                      navigate("/pricing-plans");
+                    }}
+                  >
+                    <Text>Explore Pricing {"->"}</Text>
+                  </Button>
                 </VStack>
               </VStack>
             </Fade>
