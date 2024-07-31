@@ -148,7 +148,7 @@ const ChecklistTypeSection = () => {
               in={selectedType}
               transition={{ enter: { duration: 1 } }}
             >
-              <VStack spacing={4} align="start" color={accentOne}>
+              <VStack spacing={4} align="center" color={accentOne}>
                 <Text color={accentOne} fontSize="lg">
                   {selectedType.description}
                 </Text>
@@ -159,6 +159,10 @@ const ChecklistTypeSection = () => {
                   <Button
                     onClick={() => {
                       navigate(`/pricing-plans/${selectedType.type}`);
+                      window.scrollTo({
+                        top: 0,
+                        behavior: "smooth",
+                      });
                     }}
                   >
                     <Text>Explore Pricing {"->"}</Text>

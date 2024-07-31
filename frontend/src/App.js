@@ -4,7 +4,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import NavBar from "./ui/NavigationBar/NavBar.js";
 import "./App.css";
-import AnimatedRoutes from "./pages/components/AnimatedRoutes.js";
+import AnimatedRoutes from "./ui/AnimatedRoutes.js";
+import ScrollUpButton from "./ui/ScrollUpButton.js";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <div className="App">
           <NavBar />
           <AnimatedRoutes />
+          <ScrollUpButton />
         </div>
       </Router>
     </ChakraProvider>

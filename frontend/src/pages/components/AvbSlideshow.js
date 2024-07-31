@@ -66,7 +66,6 @@ const AvbSlideshow = ({ slides }) => {
           left="50%"
           transform="translate(-50%, -50%)"
           width="80%"
-          maxWidth="1200px"
           height="80%"
           justify="center"
           align="center"

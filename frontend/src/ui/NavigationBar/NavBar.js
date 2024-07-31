@@ -25,6 +25,21 @@ export default function NavBar() {
   const navigate = useNavigate(); // Hook for navigation
   const location = useLocation();
 
+  const navRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (navRef.current && !navRef.current.contains(event.target)) {
+        changeNavSize("small");
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   function getMatchingPrefix(value, prefixes) {
     // Checks if a string value starts with any prefix in prefixes
     return prefixes.find((prefix) => value.startsWith(prefix));
@@ -69,6 +84,7 @@ export default function NavBar() {
   }, []);
 
   const handleNavItemClick = (title, path) => {
+    changeNavSize("small");
     navigate(path); // Use navigate to change the route
     window.scrollTo({
       // Scroll to top of screen
@@ -88,7 +104,7 @@ export default function NavBar() {
       h={navSize === "small" ? "55px" : "85px"}
       zIndex="overlay"
       backgroundColor={bgColor} // Dynamic background color
-      boxShadow={scrolling ? "0 4px 20px rgba(0, 0, 0, 0.3)" : "none"}
+      boxShadow="0 4px 20px rgba(0, 0, 0, 0.18)"
       borderRadius="30px"
       flexDir="row"
       justifyContent="space-around"
@@ -96,9 +112,9 @@ export default function NavBar() {
       as={motion.div}
       transition="0.3s linear"
       marginTop="15px"
-      p="0 5px"
       fontSize={{ base: "0.7rem", sm: "1rem" }}
       overflow="hidden"
+      ref={navRef}
     >
       <IconButton
         background="none"

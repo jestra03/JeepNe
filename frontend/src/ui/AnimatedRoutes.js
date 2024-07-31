@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import LaunchPage from "../LaunchPage";
-import PricingPage from "../PricingPage";
+import LaunchPage from "../pages/LaunchPage";
+import PricingPage from "../pages/PricingPage";
 import { AnimatePresence } from "framer-motion";
 
 function AnimatedRoutes() {
