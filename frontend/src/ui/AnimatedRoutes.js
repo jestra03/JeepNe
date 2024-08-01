@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import LaunchPage from "../pages/LaunchPage";
 import PricingPage from "../pages/PricingPage";
 import { AnimatePresence } from "framer-motion";
+import AboutPage from "../pages/AboutPage";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -13,6 +14,7 @@ function AnimatedRoutes() {
         <Route path="/home" element={<LaunchPage />} />
         <Route path="/" element={<LaunchPage />} />
         <Route path="/pricing-plans/:type?" element={<PricingPage />} />
+        <Route path="/about" element={<AboutPage />} />
       </Routes>
     </AnimatePresence>
   );

@@ -10,6 +10,7 @@ import {
   HStack,
   Flex,
   Circle,
+  Fade,
 } from "@chakra-ui/react";
 import ComparisonSection from "./components/ComparisonSection";
 import {
@@ -213,13 +214,12 @@ const PricingPage = () => {
   };
 
   return (
-    <Box fontFamily="'Manrope', sans-serif">
-      <Box
-        paddingTop={100}
-        as={motion.div}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, transition: { duration: 0.7 } }}
-      >
+    <Box
+      as={motion.div}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { duration: 0.7 } }}
+    >
+      <Box paddingTop={100}>
         <Box>
           <VStack>
             <Box>
@@ -268,29 +268,27 @@ const PricingPage = () => {
             )}
           </VStack>
         </Box>
-        {businessType !== "none" && !exploreSection && (
-          <Box
-            as={motion.div}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { duration: 0.7 } }}
-          >
-            <Text
-              fontSize={{ base: "medium", sm: "x-large" }}
-              color={accentTwo}
-            >
-              Explore why our plans are better.
-            </Text>
-            <button
-              onClick={() => {
-                setExploreSection(true);
-              }}
-            >
-              <IoIosArrowDown color={accentTwo} size="40" />
-            </button>
-          </Box>
+        {businessType !== "none" && (
+          <Fade in={!exploreSection} transition={{ enter: { duration: 0.5 } }}>
+            <Box>
+              <Text
+                fontSize={{ base: "medium", sm: "x-large" }}
+                color={accentTwo}
+              >
+                Explore why our plans are better.
+              </Text>
+              <button
+                onClick={() => {
+                  setExploreSection(true);
+                }}
+              >
+                <IoIosArrowDown color={accentTwo} size="40" />
+              </button>
+            </Box>
+          </Fade>
         )}
       </Box>
-      {exploreSection && (
+      <Fade in={exploreSection} transition={{ enter: { duration: 0.5 } }}>
         <VStack ref={exploreSectionRef} m={10}>
           <CircleSection
             title="Commission-Free Transactions"
@@ -335,7 +333,7 @@ const PricingPage = () => {
           />
           <FaqSection />
         </VStack>
-      )}
+      </Fade>
     </Box>
   );
 };
