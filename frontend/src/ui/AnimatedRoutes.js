@@ -12,7 +12,7 @@ function AnimatedRoutes() {
       <Routes location={location} key={location.pathname}>
         <Route path="/home" element={<LaunchPage />} />
         <Route path="/" element={<LaunchPage />} />
-        <Route path="/pricing-plans/:type" element={<PricingPage />} />
+        <Route path="/pricing-plans/:type?" element={<PricingPage />} />
       </Routes>
     </AnimatePresence>
   );

@@ -24,7 +24,7 @@ import FaqSection from "./components/FaqSection.js";
 
 const PricingPage = () => {
   const { type } = useParams();
-  const [businessType, setBusinessType] = useState(type);
+  const [businessType, setBusinessType] = useState("none");
   const businessTypes = ["Restaurant", "Store", "Service Provider"];
   const [exploreSection, setExploreSection] = useState(false);
   const features = {
@@ -148,6 +148,10 @@ const PricingPage = () => {
   }, [exploreSection]);
 
   useEffect(() => {
+    if (businessTypes.includes(type)) {
+      setBusinessType(type);
+    }
+
     // Close the explore section when scrolled all the way up
     const handleScroll = () => {
       if (window.scrollY === 0) {
@@ -255,7 +259,7 @@ const PricingPage = () => {
               />
             </Box>
 
-            {businessType === "selectPlan" && (
+            {businessType === "none" && (
               <Box marginTop={5}>
                 <Text opacity={0.5} color={primaryColor}>
                   Select a Business Type Above
@@ -264,7 +268,7 @@ const PricingPage = () => {
             )}
           </VStack>
         </Box>
-        {businessType !== "selectPlan" && !exploreSection && (
+        {businessType !== "none" && !exploreSection && (
           <Box
             as={motion.div}
             initial={{ opacity: 0 }}

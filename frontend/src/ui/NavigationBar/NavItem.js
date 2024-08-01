@@ -13,7 +13,7 @@ export default function NavItem({
   return (
     <Link
       backgroundColor={active && accentTwo}
-      p={3}
+      p={{ base: 1, sm: 3 }}
       borderRadius={8}
       _hover={{ textDecor: "none", backgroundColor: accentTwo }}
       onClick={onClick}

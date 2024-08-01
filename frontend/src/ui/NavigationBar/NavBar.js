@@ -5,7 +5,12 @@ import NavItem from "./NavItem";
 import logo from "./logo.png";
 import { motion } from "framer-motion";
 import { useLocation, useNavigate } from "react-router-dom";
-import { primaryColor, accentOne } from "../../themeSettings.js";
+import {
+  primaryColor,
+  accentOne,
+  textColor1,
+  textColor2,
+} from "../../themeSettings.js";
 
 const pages = {
   Home: "/home",
@@ -68,11 +73,11 @@ export default function NavBar() {
         // scrollPosTransition
         // can add a useState for scrollPosTransition later on for diff pages, 700 is hardcoded for the launch page
         setBgColor(primaryColor); // Background color when scrolled below 700
-        setTextColor("black"); // Text color when scrolled below 700
+        setTextColor(textColor1); // Text color when scrolled below 700
         setLogoBrightness("1000%"); // Set brightness to 1000% to make it white
       } else {
         setBgColor(accentOne); // Default background color
-        setTextColor("black"); // Default text color
+        setTextColor(textColor2); // Default text color
         setLogoBrightness("100%"); // Default brightness for the logo
       }
     };
@@ -116,10 +121,9 @@ export default function NavBar() {
       overflow="hidden"
       ref={navRef}
     >
-      <IconButton
-        background="none"
-        _hover={{ background: "none" }}
-        icon={<FiMenu color={textColor} />}
+      <NavItem
+        navSize="small"
+        icon={FiMenu}
         onClick={() => {
           changeNavSize(navSize === "small" ? "large" : "small");
         }}
@@ -159,9 +163,7 @@ export default function NavBar() {
         icon={FiDollarSign}
         title="Pricing"
         active={activeItem === "Pricing"}
-        onClick={() =>
-          handleNavItemClick("Pricing", "/pricing-plans/selectPlan")
-        } // Add path
+        onClick={() => handleNavItemClick("Pricing", "/pricing-plans")} // Add path
         textColor={textColor} // Pass textColor to NavItem
       />
       <NavItem
