@@ -16,7 +16,7 @@ const pages = {
   Home: "/home",
   About: "/about",
   Pricing: "/pricing-plans",
-  Support: "/contact",
+  Support: "/support",
 };
 
 export default function NavBar() {
@@ -171,7 +171,7 @@ export default function NavBar() {
         icon={FiPhone}
         title="Support"
         active={activeItem === "Support"}
-        onClick={() => handleNavItemClick("Support", "/contact")} // Add path
+        onClick={() => handleNavItemClick("Support", "/support")} // Add path
         textColor={textColor} // Pass textColor to NavItem
       />
       <Flex alignItems="center">

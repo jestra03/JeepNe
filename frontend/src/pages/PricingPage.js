@@ -13,6 +13,7 @@ import {
   Fade,
 } from "@chakra-ui/react";
 import ComparisonSection from "./components/ComparisonSection";
+import { CircleSection } from "./components/CircleSection.js";
 import {
   primaryColor,
   accentOne,
@@ -190,28 +191,7 @@ const PricingPage = () => {
     return null;
   }
 
-  const CircleSection = ({ title, description }) => {
-    return (
-      <Circle
-        bg={accentTwo}
-        width={{ base: "80vw", md: "300px" }}
-        height={{ base: "80vw", md: "300px" }}
-        flexDir="column"
-        p={10}
-      >
-        <Text
-          color={textColor2}
-          fontSize={{ base: "medium", sm: "2.5rem", md: "xx-large" }}
-          fontWeight="bold"
-        >
-          {title}
-        </Text>
-        <Text color={accentOne} fontWeight="bold">
-          {description}
-        </Text>
-      </Circle>
-    );
-  };
+
 
   return (
     <Box
@@ -288,52 +268,54 @@ const PricingPage = () => {
           </Fade>
         )}
       </Box>
-      <Fade in={exploreSection} transition={{ enter: { duration: 0.5 } }}>
-        <VStack ref={exploreSectionRef} m={10}>
-          <CircleSection
-            title="Commission-Free Transactions"
-            description="Unlike our competitors."
-          />
+      {exploreSection && (
+        <Fade in={exploreSection} transition={{ enter: { duration: 0.5 } }}>
+          <VStack ref={exploreSectionRef} m={10}>
+            <CircleSection
+              title="Commission-Free Transactions"
+              description="Unlike our competitors."
+            />
 
-          <Divider
-            borderColor={accentTwo}
-            borderWidth="5px"
-            width="50px"
-            opacity={1}
-            style={{ rotate: "90deg" }}
-            zIndex={-1}
-          />
-          <CircleSection
-            title="Fully Customized Websites"
-            description="To make your page stand out from the crowd."
-          />
-          <Divider
-            borderColor={accentTwo}
-            borderWidth="5px"
-            width="50px"
-            opacity={1}
-            style={{ rotate: "90deg" }}
-            zIndex={-1}
-          />
-          <CircleSection
-            title="Direct Support From Us"
-            description="For the ups and downs of running a business."
-          />
-          <Divider
-            borderColor={accentTwo}
-            borderWidth="5px"
-            width="50px"
-            opacity={1}
-            style={{ rotate: "90deg" }}
-            zIndex={-1}
-          />
-          <CircleSection
-            title="Free Demos and Consultations"
-            description="So you can try before you buy."
-          />
-          <FaqSection />
-        </VStack>
-      </Fade>
+            <Divider
+              borderColor={accentTwo}
+              borderWidth="5px"
+              width="50px"
+              opacity={1}
+              style={{ rotate: "90deg" }}
+              zIndex={-1}
+            />
+            <CircleSection
+              title="Fully Customized Websites"
+              description="To make your page stand out from the crowd."
+            />
+            <Divider
+              borderColor={accentTwo}
+              borderWidth="5px"
+              width="50px"
+              opacity={1}
+              style={{ rotate: "90deg" }}
+              zIndex={-1}
+            />
+            <CircleSection
+              title="Direct Support From Us"
+              description="For the ups and downs of running a business."
+            />
+            <Divider
+              borderColor={accentTwo}
+              borderWidth="5px"
+              width="50px"
+              opacity={1}
+              style={{ rotate: "90deg" }}
+              zIndex={-1}
+            />
+            <CircleSection
+              title="Free Demos and Consultations"
+              description="So you can try before you buy."
+            />
+            <FaqSection />
+          </VStack>
+        </Fade>
+      )}
     </Box>
   );
 };

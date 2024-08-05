@@ -2,6 +2,7 @@
 import React from "react";
 import { VStack, Text, Box, Flex } from "@chakra-ui/react";
 import { accentOne, accentTwo, primaryColor } from "../../themeSettings";
+import { CircleSection } from "./CircleSection";
 
 // Section Component
 const Section = ({ title, description }) => (
@@ -44,15 +45,23 @@ const InfoSection = () => {
   ];
 
   return (
-    <VStack bg={accentOne} p={4} spacing={8} align="center" textAlign="center">
+    <Flex
+      bg={accentOne}
+      p={4}
+      align="center"
+      justify="center"
+      textAlign="center"
+      wrap="wrap"
+    >
       {sections.map((section, index) => (
-        <Section
-          key={index} // Use index as a key if section titles are not unique
-          title={section.title}
-          description={section.description}
-        />
+        <Box m={2}>
+          <CircleSection
+            title={section.title}
+            description={section.description}
+          />
+        </Box>
       ))}
-    </VStack>
+    </Flex>
   );
 };
 
