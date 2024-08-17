@@ -15,8 +15,8 @@ function AboutPage() {
         m={1}
       >
         <Circle
-          width={{ base: "20vw", md: "250px" }}
-          height={{ base: "20vw", md: "250px" }}
+          width={{ base: "15vw", md: "200px" }}
+          height={{ base: "15vw", md: "200px" }}
           overflow="hidden"
         >
           <Image
@@ -41,17 +41,17 @@ function AboutPage() {
   const team = [
     {
       name: "Joshua",
-      role: "Full Stack Developer",
-      desc: "skibbidi",
-      linkedin: "mylink.com",
+      role: "Lead Front Stack Developer",
+      desc: "Software Engineering major from Cal Poly from the Central Coast (Los Osos, CA).",
+      linkedin: "joshuame",
       pictureLocation: "/Joshua.png",
     },
     {
       name: "Karan",
-      role: "Full Stack Developer",
-      desc: "hennessey",
-      linkedin: "yeya",
-      pictureLocation: "/Karan.webp",
+      role: "Front End Developer",
+      desc: "Software Engineering major from Cal Poly, originally from the Bay Area.",
+      linkedin: "karanscars",
+      pictureLocation: "/Joshua.png",
     },
   ];
 
